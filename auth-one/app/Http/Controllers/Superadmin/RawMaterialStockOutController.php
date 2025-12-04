@@ -63,21 +63,27 @@ class RawMaterialStockOutController extends Controller
     /**
      * 🔹 Store (Save Stock Out)
      */
-    public function store(Request $request)
+  public function store(Request $request)
     {
+        // ✅ ফিক্স: কঠোর ভ্যালিডেশন যোগ করা হয়েছে
         $request->validate([
-            'slip_number' => ['required', 'string', 'unique:production_issues,issue_number'],
+            'slip_number' => ['required', 'string', 'unique:production_issues,issue_number'], 
             'issue_date' => 'required|date',
+            // আইটেম অ্যারে ভ্যালিডেশন:
             'items' => 'required|array|min:1',
+            // প্রতিটি আইটেমের জন্য ভ্যালিডেশন:
             'items.*.raw_material_id' => 'required|exists:raw_materials,id',
-            'items.*.raw_material_stock_id' => 'required|exists:raw_material_stocks,id',
+            'items.*.raw_material_stock_id' => 'required|exists:raw_material_stocks,id', // <-- অনুপস্থিত কী ফিক্স করা হয়েছে
             'items.*.quantity' => 'required|numeric|min:0.01',
             'items.*.unit_price' => 'required|numeric|min:0',
+            'factory_name' => 'nullable|string|max:255',
+            'notes' => 'nullable|string',
         ], [
             'slip_number.unique' => 'This issue slip number already exists.',
             'items.required' => 'At least one material item is required.',
+            'items.*.raw_material_stock_id.required' => 'For every item, you must select a Batch.', // কাস্টম এরর মেসেজ
         ]);
-
+        
         DB::beginTransaction();
         try {
             // 1️⃣ Production Issue Header তৈরি করা
@@ -93,6 +99,7 @@ class RawMaterialStockOutController extends Controller
             $totalCost = 0;
 
             foreach ($request->items as $item) {
+                // ভ্যালিডেশনের কারণে এখন এই কী নিশ্চিতভাবে উপস্থিত থাকবে।
                 $issuedQty = $item['quantity'];
                 $unitCost = $item['unit_price'];
                 $lineTotal = round($issuedQty * $unitCost, 2);
@@ -102,6 +109,7 @@ class RawMaterialStockOutController extends Controller
 
                 if (!$stock || $stock->stock_quantity < $issuedQty) {
                     DB::rollBack();
+                    // যদি পর্যাপ্ত স্টক না থাকে
                     return back()->withInput()->with('error', 'Error: Insufficient stock for batch ' . ($stock ? $stock->batch_number : 'ID ' . $item['raw_material_stock_id']));
                 }
 
@@ -131,7 +139,7 @@ class RawMaterialStockOutController extends Controller
 
             DB::commit();
             return redirect()->route('superadmin.raw-material-stock-out.index')
-                             ->with('success', 'কাঁচামাল ইস্যু সফলভাবে সংরক্ষণ করা হয়েছে!');
+                             ->with('success', 'Raw material issued successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->withInput()->with('error', 'Error: ' . $e->getMessage());
@@ -160,4 +168,26 @@ class RawMaterialStockOutController extends Controller
             return back()->with('error', 'ইস্যু স্লিপটি ডিলিট করা যায়নি: ' . $e->getMessage());
         }
     }
+
+    /**
+     * 🔹 Raw Material Stock Report Generation
+     */
+    public function stockReport()
+    {
+        // DB::raw() ব্যবহার করে প্রতিটি Raw Material এর জন্য সমষ্টিগত স্টক এবং মূল্য গণনা করা হচ্ছে।
+        $stockReportData = RawMaterialStock::select(
+            'raw_material_id',
+            DB::raw('SUM(stock_quantity) as current_stock_qty'), // মোট স্টক পরিমাণ
+            DB::raw('SUM(stock_quantity * average_purchase_price) / SUM(stock_quantity) as avg_unit_cost'), // গড় একক খরচ (Weighted Average Price)
+            DB::raw('SUM(stock_quantity * average_purchase_price) as total_value') // মোট স্টক মূল্য
+        )
+        ->where('stock_quantity', '>', 0) // শুধু যেগুলোতে স্টক আছে
+        ->groupBy('raw_material_id')
+        ->with('rawMaterial') // RawMaterial নাম আনার জন্য
+        ->get();
+
+        // ভিউ-তে ডেটা পাঠানো
+        return view('superadmin.raw_material_stock_out.stock_report', compact('stockReportData'));
+    }
+
 }

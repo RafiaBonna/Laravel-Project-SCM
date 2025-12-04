@@ -22,12 +22,30 @@
                         <th>Total Value</th>
                     </tr>
                 </thead>
-                <tbody>
+               <tbody>
+                    {{-- Controller থেকে আসা $stockReportData লুপ করা হচ্ছে --}}
+                    @forelse ($stockReportData as $item)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        {{-- Raw Material Model থেকে নাম আনা হচ্ছে --}}
+                        <td>{{ $item->rawMaterial->name ?? 'N/A' }} ({{ $item->rawMaterial->unit_of_measure ?? '' }})</td>
+                        
+                        {{-- গণনা করা স্টক কোয়ান্টিটি --}}
+                        <td>{{ number_format($item->current_stock_qty, 2) }}</td> 
+                        
+                        {{-- গণনা করা গড় একক খরচ --}}
+                        <td>{{ number_format($item->avg_unit_cost, 4) }}</td>
+                        
+                        {{-- গণনা করা মোট মূল্য --}}
+                        <td>{{ number_format($item->total_value, 2) }}</td>
+                    </tr>
+                    @empty
                     <tr>
                         <td colspan="5" class="text-center text-muted">
-                            Stock Report data will be shown here.
+                            কোনো স্টক রিপোর্ট ডেটা পাওয়া যায়নি।
                         </td>
                     </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
