@@ -10,7 +10,7 @@
                 <i class="fas fa-calendar-alt me-2"></i> Period: 22 Jul - 25 Aug
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="periodFilter">
-                <li><a class="dropdown-item" href="#">Last Days</a></li>
+                <li><a class="dropdown-item" href="#">Last 1 Days</a></li>
                 <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
                 <li><a class="dropdown-item" href="#">This Month</a></li>
             </ul>
