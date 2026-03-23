@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     {{-- Brand Logo --}}
     <a href="{{ route('dashboard') }}" class="brand-link text-center">
-        <img src="{{ asset('admin/dist/img/AdminLTELogo.png') }}" alt="SCM Logo"
+        <img src="{{ asset('admin/dist/img/vujelogo.png') }}" alt="SCM Logo"
              class="brand-image img-circle elevation-3" style="opacity:.9; background:white;">
         <span class="brand-text font-weight-bold text-uppercase">SCM Panel</span>
     </a>

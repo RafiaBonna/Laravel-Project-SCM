@@ -10,7 +10,7 @@
                 <i class="fas fa-calendar-alt me-2"></i> Period: 22 Jul - 25 Aug
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="periodFilter">
-                <li><a class="dropdown-item" href="#">Last 7 Days</a></li>
+                <li><a class="dropdown-item" href="#">Last Days</a></li>
                 <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
                 <li><a class="dropdown-item" href="#">This Month</a></li>
             </ul>
@@ -87,7 +87,7 @@
   <div class="row">
         {{-- Left Column (8/12) --}}
         <div class="col-xl-8 col-lg-7">
-            
+
             {{-- 2. Inventory Level Chart (Static Data) --}}
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -152,7 +152,7 @@
 
        {{-- Right Column (4/12) --}}
         <div class="col-xl-4 col-lg-5">
-            
+
             {{-- 3. Order Statistics (Black & White Heatmap) --}}
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -174,7 +174,7 @@
                             <span style="width: 40px; text-align: center;">Thu</span>
                             <span style="width: 40px; text-align: center;">Fri</span>
                         </div>
-                        
+
                         @php
                             // Heatmap data with intensity 1 (low) to 5 (high)
                             $heatmap_data = ['18 PM' => [3, 4, 2, 5, 3], '12 PM' => [5, 5, 4, 3, 2], '06 AM' => [1, 2, 3, 2, 1]];
@@ -186,7 +186,7 @@
                                 @foreach ($intensities as $intensity)
                                     @php
                                         // Calculate opacity: 0.2 for intensity 1, up to 1.0 for intensity 5 (grayscale)
-                                        $opacity = $intensity / 5; 
+                                        $opacity = $intensity / 5;
                                         // Use pure black (0, 0, 0) with calculated opacity for grayscale
                                         $color = 'rgba(0, 0, 0, ' . $opacity . ')';
                                     @endphp
@@ -198,7 +198,7 @@
                     </div>
                 </div>
             </div>
-            
+
             {{-- 5. Alerts (Static Data) --}}
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -230,11 +230,11 @@
 {{-- JavaScript Section for Charts and Maps --}}
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var ctx = document.getElementById('inventoryLevelChart').getContext('2d');
-            
+
             if (ctx) {
                 var inventoryLevelChart = new Chart(ctx, {
                     type: 'bar',
@@ -243,18 +243,18 @@
                         datasets: [{
                             label: 'Current Stock',
                             // ✅ FIXED: Changed color to a medium gray
-                            backgroundColor: '#6c757d', 
+                            backgroundColor: '#6c757d',
                             data: [4500, 4200, 5000, 4800, 5500, 5200, 5800],
                         }, {
                             label: 'Optimal Stock',
                             // ✅ FIXED: Changed color to a dark gray/black
-                            backgroundColor: '#343a40', 
+                            backgroundColor: '#343a40',
                             data: [4000, 4000, 4500, 4500, 5000, 5000, 5500],
                         }],
                     },
                     options: {
                         responsive: true,
-                        maintainAspectRatio: false, 
+                        maintainAspectRatio: false,
                         scales: {
                             x: { grid: { display: false } },
                             y: { beginAtZero: true, max: 8000, ticks: { padding: 10 } }
