@@ -7,7 +7,7 @@
         <h1 class="mb-0 text-dark">Supply Chain Dashboard</h1>
         <div class="dropdown">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="periodFilter" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-calendar-alt me-2"></i> Period: 22 Jul - 25 Aug
+                <i class="fas fa-calendar-alt me-2"></i> Period: 22 Jul - 22 Aug
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="periodFilter">
                 <li><a class="dropdown-item" href="#">Last 15 Days</a></li>
