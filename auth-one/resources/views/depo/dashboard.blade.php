@@ -219,7 +219,7 @@
                     </div>
                     <div class="alert alert-light   p-2 mb-2" role="alert">
                         <h6 class="alert-heading small fw-bold">Capacity Warning!</h6>
-                        <p class="mb-0 small">Bandung Cold Storage - 520/600 shelves occupied.</p>
+                        <p class="mb-0 small">Bandung Cold Storage - 550/600 shelves occupied.</p>
                     </div>
                 </div>
             </div>
