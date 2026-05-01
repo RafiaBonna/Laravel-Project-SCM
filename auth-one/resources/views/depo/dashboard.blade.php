@@ -211,7 +211,7 @@
                     </div>
                     <div class="alert alert-light p-2 mb-2" role="alert">
                         <h6 class="alert-heading small fw-bold">Expiry Date!</h6>
-                        <p class="mb-0 small">Yogurt Cups - 45 units will expire in  days.</p>
+                        <p class="mb-0 small">Yogurt Cups - 45 units will expire in 5 days.</p>
                     </div>
                     <div class="alert alert-dark p-2 mb-2" role="alert">
                         <h6 class="alert-heading small fw-bold">Route Blockage!</h6>
