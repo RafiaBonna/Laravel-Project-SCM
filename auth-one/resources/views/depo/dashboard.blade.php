@@ -42,7 +42,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col me-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Orders</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">10,982</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">10,985</div>
                             <small class="text-danger"><i class="fas fa-arrow-down"></i> -12.5% vs last month</small>
                         </div>
                         <div class="col-auto"><i class="fas fa-shopping-cart fa-2x text-gray-300"></i></div>
