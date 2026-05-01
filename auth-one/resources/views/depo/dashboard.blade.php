@@ -242,7 +242,7 @@
                         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
                         datasets: [{
                             label: 'Current Stock',
-                            // ✅ FIXED: Changed color to a medium gray
+
                             backgroundColor: '#6c757d',
                             data: [4500, 4200, 5000, 4800, 5500, 5200, 5800],
                         }, {
