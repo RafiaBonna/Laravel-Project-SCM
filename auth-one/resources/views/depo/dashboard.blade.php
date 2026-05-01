@@ -247,7 +247,7 @@
                             data: [4500, 4200, 5000, 4800, 5500, 5200, 5800],
                         }, {
                             label: 'Optimal Stock',
-                            // ✅ FIXED: Changed color to a dark gray/black
+
                             backgroundColor: '#343a40',
                             data: [4000, 4000, 4500, 4500, 5000, 5000, 5500],
                         }],
