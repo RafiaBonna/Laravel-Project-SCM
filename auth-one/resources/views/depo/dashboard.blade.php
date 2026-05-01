@@ -215,7 +215,7 @@
                     </div>
                     <div class="alert alert-dark p-2 mb-2" role="alert">
                         <h6 class="alert-heading small fw-bold">Route Blockage!</h6>
-                        <p class="mb-0 small">SHP-0028 delayed due to road obstruction.</p>
+                        <p class="mb-0 small">SHP-00284 delayed due to road obstruction.</p>
                     </div>
                     <div class="alert alert-light   p-2 mb-2" role="alert">
                         <h6 class="alert-heading small fw-bold">Capacity Warning!</h6>
