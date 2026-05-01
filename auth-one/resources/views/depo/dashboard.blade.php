@@ -207,7 +207,7 @@
                 <div class="card-body">
                     <div class="alert alert-dark p-2 mb-2" role="alert">
                         <h6 class="alert-heading small fw-bold">Stockout Risk!</h6>
-                        <p class="mb-0 small">Instant porridge - 2 days coverage left.</p>
+                        <p class="mb-0 small">Instant porridge - 3 days coverage left.</p>
                     </div>
                     <div class="alert alert-light p-2 mb-2" role="alert">
                         <h6 class="alert-heading small fw-bold">Expiry Date!</h6>
