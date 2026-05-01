@@ -11,7 +11,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="periodFilter">
                 <li><a class="dropdown-item" href="#">Last 15 Days</a></li>
-                <li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+                <li><a class="dropdown-item" href="#">Last 3 Days</a></li>
                 <li><a class="dropdown-item" href="#">This Month</a></li>
             </ul>
         </div>
