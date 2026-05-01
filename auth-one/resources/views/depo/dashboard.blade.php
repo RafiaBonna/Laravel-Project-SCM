@@ -26,7 +26,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col me-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Current Inventory Stock</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">3,500</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">5,500</div>
                             <small class="text-success"><i class="fas fa-arrow-up"></i> +3.1% vs last month</small>
                         </div>
                         <div class="col-auto"><i class="fas fa-boxes fa-2x text-gray-300"></i></div>
